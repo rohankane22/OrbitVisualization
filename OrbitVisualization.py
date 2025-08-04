@@ -47,24 +47,33 @@ def animate_orbit(system, num_steps):
 
     fig, ax = plt.subplots()
     ax.set_aspect('equal', 'box')
-    ax.set_xlim(-5,5)
-    ax.set_ylim(-5,5)
+    ax.set_xlim(-15,15)
+    ax.set_ylim(-15,15)
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
+
+    planets = system.planets.keys()
+    marker_plots = []
+    for planet in planets:
+        marker = ax.scatter(system.planets[planet].x, system.planets[planet].y)
+        marker_plots.append(marker)
 
     def update(frame):
         system.run_timestep()
 
-        for i in range(len(system.planets)):
-            ax.plot(system.planets[i].x, system.planets[i].y, markersize=10, color='b')
+        for n in range(len(marker_plots)):
+            b = marker_plots[n]
+            b.set_offsets(np.array([system.planets[planet].x , system.planets[planet].y]))
+        return marker_plots
     
     ani = anim.FuncAnimation(fig, update, frames=num_steps, blit=True, interval=100, repeat=True)
 
+    ani.save("animation.gif", writer=anim.PillowWriter(fps=100))
 
 Jupiter = Planet(12,5,1)
 Saturn = Planet(29,10,.8)
 SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},planet_dict={'Jupiter': Jupiter, 'Saturn': Saturn})
 
-SolarSystem.plot_system()
+#SolarSystem.plot_system()
 
-#animate_orbit(SolarSystem, 100)
+animate_orbit(SolarSystem, 5000)

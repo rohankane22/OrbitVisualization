@@ -36,10 +36,9 @@ class System(Planet):
         plt.scatter(0,0)
         plt.xlim(-10, 10)
         plt.ylim(-10,10)
-        planets = self.planets.keys()
-        for planet in planets:
-            print(self.planets[planet].x, self.planets[planet].y)
-            plt.scatter(self.planets[planet].x, self.planets[planet].y)
+        for pl_name, planet in self.planets.items():
+            print(planet.x, planet.y)
+            plt.scatter(planet.x, planet.y)
         plt.show()
 
 
@@ -52,10 +51,9 @@ def animate_orbit(system, num_steps):
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
 
-    planets = system.planets.keys()
     marker_plots = []
-    for planet in planets:
-        marker = ax.scatter(system.planets[planet].x, system.planets[planet].y)
+    for pl_name, planet in self.planets.items():
+        marker = ax.scatter(planet.x, planet.y)
         marker_plots.append(marker)
 
     def update(frame):
@@ -74,6 +72,6 @@ Jupiter = Planet(12,5,1)
 Saturn = Planet(29,10,.8)
 SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},planet_dict={'Jupiter': Jupiter, 'Saturn': Saturn})
 
-#SolarSystem.plot_system()
+SolarSystem.plot_system()
 
-animate_orbit(SolarSystem, 5000)
+#animate_orbit(SolarSystem, 5000)

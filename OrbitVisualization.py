@@ -61,7 +61,7 @@ def animate_orbit(system, num_steps):
     for pl_name, planet in system.planets.items():
         marker = ax.scatter(planet.x, planet.y, label=pl_name)
         marker_plots.append(marker)
-        circle = Circle((0, 0), planet.a, color='black', fill=False, alpha=0.7,zorder=0)
+        circle = Circle((0, 0), planet.a, color='white', fill=False, alpha=0.7,zorder=0)
         ax.add_patch(circle)
 
     def update(frame):

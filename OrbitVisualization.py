@@ -32,7 +32,7 @@ class System(Planet):
     
     def plot_system(self):
         plt.figure()
-        plt.scatter(0,0)
+        
         plt.xlim(-10, 10)
         plt.ylim(-10,10)
         for pl_name, planet in self.planets.items():
@@ -49,6 +49,7 @@ def animate_orbit(system, num_steps):
     ax.set_ylim(-15,15)
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
+    ax.scatter(0,0,marker='*',color=self.star_dict['Teff'],vmin=3625,vmax=9660,cmap='RdYlBu')
 
     marker_plots = []
     for pl_name, planet in self.planets.items():

@@ -37,7 +37,7 @@ class System(Planet):
     
     def plot_system(self):
         plt.figure()
-        
+        plt.scatter(0,0)
         plt.xlim(-10, 10)
         plt.ylim(-10,10)
         for pl_name, planet in self.planets.items():
@@ -60,7 +60,7 @@ def animate_orbit(system, num_steps):
 
     marker_plots = []
     for pl_name, planet in system.planets.items():
-        marker = ax.scatter(planet.x, planet.y, label=pl_name)
+        marker = ax.scatter(planet.x, planet.y, label=pl_name, s=planet.radius)
         marker_plots.append(marker)
         circle = Circle((0, 0), planet.a, color='white', fill=False, alpha=0.7,zorder=0)
         ax.add_patch(circle)

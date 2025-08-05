@@ -3,14 +3,12 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 from matplotlib.patches import Circle
 
-plt.style.use('dark_background')
-
 class Planet(object):
     def __init__(self,period,a,radius,theta=np.pi,e=0):
-        self.period = period
-        self.a = a
-        self.theta = theta
-        self.radius = radius
+        self.period = period  # years
+        self.a = a            # AU
+        self.theta = theta    # radians
+        self.radius = radius  # TBD
 
         self.x = a*np.cos(theta)
         self.y = a*np.sin(theta)
@@ -52,7 +50,8 @@ def animate_orbit(system, num_steps):
     ax.set_aspect('equal', 'box')
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
-    ax.scatter(0,0,marker='*',c=system.Teff,vmin=3625,vmax=9660,cmap='RdYlBu', s=100)
+
+    ax.scatter([0],[0],marker='*',s=100)
 
     semimajor_axis = 0
     marker_plots = []
@@ -61,7 +60,7 @@ def animate_orbit(system, num_steps):
             semimajor_axis = planet.a
         marker = ax.scatter(planet.x, planet.y, label=pl_name, s=300*planet.radius, alpha=0.9)
         marker_plots.append(marker)
-        circle = Circle((0, 0), planet.a, color='white', fill=False, alpha=0.7,zorder=0)
+        circle = Circle((0, 0), planet.a, color='black', fill=False, alpha=0.7,zorder=0)
         ax.add_patch(circle)
 
     ax.set_xlim(-1.2*semimajor_axis,1.2*semimajor_axis)
@@ -81,9 +80,19 @@ def animate_orbit(system, num_steps):
 
     ani.save("animation.gif", writer=anim.PillowWriter(fps=100))
 
-Jupiter = Planet(12,5,1)
+Mercury = Planet(0.24,0.387,1)
+Venus = Planet(0.616,0.723,1)
+Earth = Planet(1,1,1)
+Mars = Planet(1.88,1.524,1)
+Jupiter = Planet(12,5,1) 
 Saturn = Planet(29,10,.8)
-SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},planet_dict={'Jupiter': Jupiter, 'Saturn': Saturn})
+SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},\
+                     planet_dict={'Mercury': Mercury, \
+                                  'Venus': Venus, \
+                                  'Earth': Earth, \
+                                  'Mars': Mars, \
+                                  'Jupiter': Jupiter, \
+                                  'Saturn': Saturn})
 
 #SolarSystem.plot_system()
 

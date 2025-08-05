@@ -99,3 +99,13 @@ SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},\
 #SolarSystem.plot_system()
 
 animate_orbit(SolarSystem, 1000)
+
+
+Trappist1 = System(star_dict={'M': 0.09, 'Teff': 2566},
+                   planet_dict={'b': Trappist_b,
+                                'c': Trappist_c,
+                                'd': Trappist_d,
+                                'e': Trappist_e,
+                                'f': Trappist_f,
+                                'g': Trappist_g,
+                                'h': Trappist_h,})

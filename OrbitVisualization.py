@@ -54,7 +54,7 @@ def animate_orbit(system, num_steps):
     ax.set_ylim(-15,15)
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
-    ax.scatter(0,0,marker='*',color=self.star_dict['Teff'],vmin=3625,vmax=9660,cmap='RdYlBu')
+    ax.scatter(0,0,marker='*',color=system.star_dict['Teff'],vmin=3625,vmax=9660,cmap='RdYlBu')
 
     ax.scatter([0],[0],marker='*',s=100)
 

@@ -23,11 +23,10 @@ class System(Planet):
 
     def run_timestep(self,dt=0.1):
         
-        planets = self.planets.keys()
-        for planet in planets:
-            P = self.planets[planet].period
+        for pl_name, planet in self.planets.items():
+            P = planet.period
             theta = 2*np.pi*dt/P
-            self.planets[planet].theta += theta
+            planet.theta += theta
 
         return
     

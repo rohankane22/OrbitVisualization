@@ -27,6 +27,8 @@ class System(Planet):
             P = planet.period
             theta = 2*np.pi*dt/P
             planet.theta += theta
+            planet.x = planet.a * np.cos(planet.theta)
+            planet.y = planet.a * np.sin(planet.theta)
 
         return
     
@@ -51,16 +53,18 @@ def animate_orbit(system, num_steps):
     ax.set_ylabel("AU")
 
     marker_plots = []
-    for pl_name, planet in self.planets.items():
+    for pl_name, planet in system.planets.items():
         marker = ax.scatter(planet.x, planet.y)
         marker_plots.append(marker)
 
     def update(frame):
         system.run_timestep()
-
+        planet_names = list(system.planets.keys())
         for n in range(len(marker_plots)):
             b = marker_plots[n]
-            b.set_offsets(np.array([system.planets[planet].x , system.planets[planet].y]))
+            pl_name = planet_names[n]
+            planet = system.planets[pl_name]
+            b.set_offsets(np.array([planet.x , planet.y]))
         return marker_plots
     
     ani = anim.FuncAnimation(fig, update, frames=num_steps, blit=True, interval=100, repeat=True)
@@ -71,6 +75,6 @@ Jupiter = Planet(12,5,1)
 Saturn = Planet(29,10,.8)
 SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},planet_dict={'Jupiter': Jupiter, 'Saturn': Saturn})
 
-SolarSystem.plot_system()
+#SolarSystem.plot_system()
 
-#animate_orbit(SolarSystem, 5000)
+animate_orbit(SolarSystem, 500)

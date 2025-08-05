@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 from matplotlib.patches import Circle
 
+plt.style.use('dark_background')
+
 class Planet(object):
     def __init__(self,period,a,radius,theta=np.pi,e=0):
         self.period = period
@@ -57,7 +59,7 @@ def animate_orbit(system, num_steps):
 
     marker_plots = []
     for pl_name, planet in system.planets.items():
-        marker = ax.scatter(planet.x, planet.y)
+        marker = ax.scatter(planet.x, planet.y, label=pl_name)
         marker_plots.append(marker)
         circle = Circle((0, 0), planet.a, color='black', fill=False, alpha=0.7,zorder=0)
         ax.add_patch(circle)
@@ -71,7 +73,7 @@ def animate_orbit(system, num_steps):
             planet = system.planets[pl_name]
             b.set_offsets(np.array([planet.x , planet.y]))
         return marker_plots
-    
+    ax.legend()
     ani = anim.FuncAnimation(fig, update, frames=num_steps, blit=True, interval=100, repeat=True)
 
     ani.save("animation.gif", writer=anim.PillowWriter(fps=100))

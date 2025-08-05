@@ -50,18 +50,22 @@ def animate_orbit(system, num_steps):
 
     fig, ax = plt.subplots()
     ax.set_aspect('equal', 'box')
-    ax.set_xlim(-15,15)
-    ax.set_ylim(-15,15)
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
     ax.scatter(0,0,marker='*',c=system.Teff,vmin=3625,vmax=9660,cmap='RdYlBu', s=100)
 
+    semimajor_axis = 0
     marker_plots = []
     for pl_name, planet in system.planets.items():
-        marker = ax.scatter(planet.x, planet.y, label=pl_name, s=planet.radius)
+        if planet.a > semimajor_axis:
+            semimajor_axis = planet.a
+        marker = ax.scatter(planet.x, planet.y, label=pl_name, s=300*planet.radius, alpha=0.9)
         marker_plots.append(marker)
         circle = Circle((0, 0), planet.a, color='white', fill=False, alpha=0.7,zorder=0)
         ax.add_patch(circle)
+
+    ax.set_xlim(-1.2*semimajor_axis,1.2*semimajor_axis)
+    ax.set_ylim(-1.2*semimajor_axis,1.2*semimajor_axis)
 
     def update(frame):
         system.run_timestep()

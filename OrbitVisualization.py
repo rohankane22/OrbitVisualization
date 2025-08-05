@@ -1,6 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as anim
+from matplotlib.patches import Circle
+
+plt.style.use('dark_background')
 
 class Planet(object):
     def __init__(self,period,a,radius,theta=np.pi,e=0):
@@ -27,6 +30,8 @@ class System(Planet):
             P = planet.period
             theta = 2*np.pi*dt/P
             planet.theta += theta
+            planet.x = planet.a * np.cos(planet.theta)
+            planet.y = planet.a * np.sin(planet.theta)
 
         return
     
@@ -51,19 +56,25 @@ def animate_orbit(system, num_steps):
     ax.set_ylabel("AU")
     ax.scatter(0,0,marker='*',color=self.star_dict['Teff'],vmin=3625,vmax=9660,cmap='RdYlBu')
 
+    ax.scatter([0],[0],marker='*',s=100)
+
     marker_plots = []
-    for pl_name, planet in self.planets.items():
-        marker = ax.scatter(planet.x, planet.y)
+    for pl_name, planet in system.planets.items():
+        marker = ax.scatter(planet.x, planet.y, label=pl_name)
         marker_plots.append(marker)
+        circle = Circle((0, 0), planet.a, color='white', fill=False, alpha=0.7,zorder=0)
+        ax.add_patch(circle)
 
     def update(frame):
         system.run_timestep()
-
+        planet_names = list(system.planets.keys())
         for n in range(len(marker_plots)):
             b = marker_plots[n]
-            b.set_offsets(np.array([system.planets[planet].x , system.planets[planet].y]))
+            pl_name = planet_names[n]
+            planet = system.planets[pl_name]
+            b.set_offsets(np.array([planet.x , planet.y]))
         return marker_plots
-    
+    ax.legend()
     ani = anim.FuncAnimation(fig, update, frames=num_steps, blit=True, interval=100, repeat=True)
 
     ani.save("animation.gif", writer=anim.PillowWriter(fps=100))
@@ -72,6 +83,6 @@ Jupiter = Planet(12,5,1)
 Saturn = Planet(29,10,.8)
 SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},planet_dict={'Jupiter': Jupiter, 'Saturn': Saturn})
 
-SolarSystem.plot_system()
+#SolarSystem.plot_system()
 
-#animate_orbit(SolarSystem, 5000)
+animate_orbit(SolarSystem, 100)

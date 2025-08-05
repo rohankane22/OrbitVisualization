@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 from matplotlib.patches import Circle
 
+plt.style.use('dark_background')
+
 class Planet(object):
     def __init__(self,period,a,radius,theta=np.pi,e=0):
         self.period = period  # years
@@ -60,7 +62,7 @@ def animate_orbit(system, num_steps):
             semimajor_axis = planet.a
         marker = ax.scatter(planet.x, planet.y, label=pl_name, s=300*planet.radius, alpha=0.9)
         marker_plots.append(marker)
-        circle = Circle((0, 0), planet.a, color='black', fill=False, alpha=0.7,zorder=0)
+        circle = Circle((0, 0), planet.a, color='white', fill=False, alpha=0.7,zorder=0)
         ax.add_patch(circle)
 
     ax.set_xlim(-1.2*semimajor_axis,1.2*semimajor_axis)
@@ -78,7 +80,7 @@ def animate_orbit(system, num_steps):
     ax.legend()
     ani = anim.FuncAnimation(fig, update, frames=num_steps, blit=True, interval=100, repeat=True)
 
-    ani.save("animation.gif", writer=anim.PillowWriter(fps=100))
+    plt.show()
 
 Mercury = Planet(0.24,0.387,1)
 Venus = Planet(0.616,0.723,1)
@@ -96,4 +98,4 @@ SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},\
 
 #SolarSystem.plot_system()
 
-animate_orbit(SolarSystem, 100)
+animate_orbit(SolarSystem, 1000)

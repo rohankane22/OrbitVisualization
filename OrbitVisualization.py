@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as anim
+from matplotlib.patches import Circle
 
 class Planet(object):
     def __init__(self,period,a,radius,theta=np.pi,e=0):
@@ -52,10 +53,14 @@ def animate_orbit(system, num_steps):
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
 
+    ax.scatter([0],[0],marker='*',s=100)
+
     marker_plots = []
     for pl_name, planet in system.planets.items():
         marker = ax.scatter(planet.x, planet.y)
         marker_plots.append(marker)
+        circle = Circle((0, 0), planet.a, color='black', fill=False, alpha=0.7,zorder=0)
+        ax.add_patch(circle)
 
     def update(frame):
         system.run_timestep()
@@ -77,4 +82,4 @@ SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},planet_dict={'Jupiter': Ju
 
 #SolarSystem.plot_system()
 
-animate_orbit(SolarSystem, 500)
+animate_orbit(SolarSystem, 100)

@@ -82,12 +82,12 @@ def animate_orbit(system, num_steps):
 
     plt.show()
 
-Mercury = Planet(0.24,0.387,1)
-Venus = Planet(0.616,0.723,1)
-Earth = Planet(1,1,1)
-Mars = Planet(1.88,1.524,1)
+Mercury = Planet(0.24,0.387,0.383/11.209)
+Venus = Planet(0.616,0.723,0.949/11.209)
+Earth = Planet(1,1,1/11.209)
+Mars = Planet(1.88,1.524,0.532/11.209)
 Jupiter = Planet(12,5,1) 
-Saturn = Planet(29,10,.8)
+Saturn = Planet(29,10,9.449/11.209)
 SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},\
                      planet_dict={'Mercury': Mercury, \
                                   'Venus': Venus, \

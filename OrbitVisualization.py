@@ -96,9 +96,13 @@ SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},\
                                   'Jupiter': Jupiter, \
                                   'Saturn': Saturn})
 
-#SolarSystem.plot_system()
-
-animate_orbit(SolarSystem, 1000)
+Trappist_b = Planet(1.511,0.0115,1.116)
+Trappist_c = Planet(2.422,0.0158,1.097)
+Trappist_d = Planet(4.049,0.0223,0.788)
+Trappist_e = Planet(6.101,0.0293,0.920)
+Trappist_f = Planet(9.208,0.0385,1.045)
+Trappist_g = Planet(12.352,0.0468,1.129)
+Trappist_h = Planet(18.773,0.0619,0.755)
 
 
 Trappist1 = System(star_dict={'M': 0.09, 'Teff': 2566},
@@ -109,3 +113,7 @@ Trappist1 = System(star_dict={'M': 0.09, 'Teff': 2566},
                                 'f': Trappist_f,
                                 'g': Trappist_g,
                                 'h': Trappist_h,})
+
+# animate_orbit(SolarSystem, 1000)
+
+animate_orbit(Trappist1, 1000)

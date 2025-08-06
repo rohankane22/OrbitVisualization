@@ -41,6 +41,21 @@ class Planet(object):
 
 
 class System(Planet):
+    """
+    System class.
+    
+    This class defines a planetary system, including a star and its planets.
+
+    Attributes:
+        M (float): Mass of the star in solar masses.
+        Teff (float): Effective temperature of the star in Kelvin.
+        planets (dict): Dictionary containing the planets in the system, with planet names as keys.
+
+    Args:
+        star_dict (dict): Dictionary containing the star's properties, including 'M' and 'Teff'.
+        planet_dict (dict): Dictionary containing the planets in the system, with planet names as keys and Planet objects as values.
+    
+    """
     def __init__(self,star_dict,planet_dict):
         self.M = star_dict['M']
         self.Teff = star_dict['Teff']
@@ -48,6 +63,13 @@ class System(Planet):
         pass
 
     def run_timestep(self,dt=0.1):
+        """
+        Advances the system by a timestep, updating the positions of the planets.
+
+        Args:
+            dt (float, optional): Time step in years. Default is 0.1 years.
+        
+        """
         
         for pl_name, planet in self.planets.items():
             P = planet.period
@@ -59,6 +81,9 @@ class System(Planet):
         return
     
     def plot_system(self):
+        """
+        Plots the current positions of the planets in the system.
+        """
         plt.figure()
         plt.scatter(0,0)
         plt.xlim(-10, 10)

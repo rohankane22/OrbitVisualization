@@ -6,7 +6,30 @@ from matplotlib.patches import Circle
 plt.style.use('dark_background')
 
 class Planet(object):
-    def __init__(self,period,a,radius,theta=np.pi,e=0):
+    """
+    Planet class.
+    
+    This class defines a planet and its properties.
+
+    Attributes:
+        period (float): Period of the planet's orbit
+        a (float): Semi-major axis of the planet's orbit
+        theta (float): angle of the orbit
+        radius (float): radius of the planet
+        x (float): x-coordinate of the location of the planet
+        y (float): y-coordinate of the location of the planet
+    
+    """
+    def __init__(self,period,a,radius,theta=np.pi):
+        """
+        Initialize the planet class.
+        
+        Args:
+            period (float): Period of the planet's orbit, in years.
+            a (float): Semi-major axis of the planet's orbit, in AU.
+            radius (float): Radius of the planet. No specific units required, user's choice.
+            theta (float, optional): Angle of the planet's orbit. Default value is pi radians.
+        """
         self.period = period  # years
         self.a = a            # AU
         self.theta = theta    # radians

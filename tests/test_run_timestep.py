@@ -3,7 +3,10 @@ import numpy as np
 import pytest
 
 def test_run_timestep():
-    
+    """
+    Unit test of the run_timestep function in OrbitVisualization.py
+    """
+
     planet = ov.Planet(1,1,1,np.pi) 
 
     system = ov.System(star_dict={'M': 1, 'Teff': 5700},\

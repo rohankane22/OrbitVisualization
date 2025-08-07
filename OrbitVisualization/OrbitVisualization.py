@@ -94,13 +94,13 @@ class System(Planet):
         plt.show()
 
 
-def animate_orbit(system, num_steps, dt=0.1, save_anim=False, show_anim=True):
+def animate_orbit(system, num_steps, dt=0.1, save_anim=False, show_anim=True, savefile=None):
     """
     Animates the orbits of the planets in the system.
 
     Args:
         system (System): The planetary system to animate.
-        num_steps (int): Number of time steps to animate.
+        num_steps (int): Number of time stepss to animate.
     """
 
     fig, ax = plt.subplots()
@@ -137,7 +137,7 @@ def animate_orbit(system, num_steps, dt=0.1, save_anim=False, show_anim=True):
 
     if save_anim:
         writervideo = anim.FFMpegWriter(fps=30)
-        ani.save('orbit.gif', writer=writervideo)
+        ani.save(savefile, writer=writervideo)
 
     if show_anim:
         plt.show()

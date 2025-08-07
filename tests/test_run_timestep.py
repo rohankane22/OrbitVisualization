@@ -1,12 +1,13 @@
-import OrbitVisualization as ov
+import OrbitVisualization.OrbitVisualization as ov
 import numpy as np
 import pytest
 
 def test_run_timestep():
-    
-    planet = ov.Planet(1,1,1,1) 
+    """
+    Unit test of the run_timestep function in OrbitVisualization.py
+    """
 
-    # print(planet.theta,planet.x,planet.y)
+    planet = ov.Planet(1,1,1,np.pi) 
 
     system = ov.System(star_dict={'M': 1, 'Teff': 5700},\
                         planet_dict={'test planet': planet})
@@ -17,11 +18,9 @@ def test_run_timestep():
     exp_x = -0.809017
     exp_y = -0.587785
 
-    # print(planet.theta,planet.x,planet.y)
-
-    assert planet.theta == pytest.approx(exp_theta, abs=0.01)
-    assert planet.x == pytest.approx(exp_x, abs=0.01)
-    assert planet.y == pytest.approx(exp_y, abs=0.01)
+    assert planet.theta == pytest.approx(exp_theta, abs=0.001)
+    assert planet.x == pytest.approx(exp_x, abs=0.001)
+    assert planet.y == pytest.approx(exp_y, abs=0.001)
 
 if __name__ == "__main__":
     test_run_timestep()

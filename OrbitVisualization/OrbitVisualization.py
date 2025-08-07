@@ -95,6 +95,14 @@ class System(Planet):
 
 
 def animate_orbit(system, num_steps):
+    """
+    Plots the system at a given timestep, runs a timestep, plots the new configuration, repeats N=num_steps times and creates a gif.
+
+    Args:
+        system: System object to plot configurations of
+        numsteps (int): number of time steps to loop over
+        
+    """
 
     fig, ax = plt.subplots()
     ax.set_aspect('equal', 'box')

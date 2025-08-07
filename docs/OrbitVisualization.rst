@@ -1,9 +1,9 @@
 .. _OrbitVisualization:
 
-Classes and Function
+Orbit Visualization Utilities
 =====================
 
-Classes for defining the planetary system.
+Classes for defining the planetary system, and functions for visualizing the orbits of the planets.
 
 .. automodule:: OrbitVisualization
    :members:

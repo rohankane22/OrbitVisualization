@@ -110,7 +110,7 @@ def animate_orbit(system, num_steps, dt=0.1, save_anim=False, show_anim=True, sa
     ax.set_xlabel("AU")
     ax.set_ylabel("AU")
 
-    ax.scatter([0],[0],marker='*',s=100)
+    ax.scatter([0],[0],marker='*',c=system.Teff,vmin=3625,vmax=9660,cmap='RdYlBu_r', s=100)
 
     semimajor_axis = 0
     marker_plots = []

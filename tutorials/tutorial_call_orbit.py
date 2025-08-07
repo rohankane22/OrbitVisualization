@@ -5,12 +5,19 @@ Tutorial Script to Plot the Orbits of the Solar System and the TRAPPIST-1 system
 from OrbitVisualization.OrbitVisualization import Planet, System, animate_orbit
 
 if __name__ == "__main__":
+    """
+    Define planets with a period (years), separation (AU), and radius (R_Jup).
+    """
     Mercury = Planet(0.24,0.387,0.383/11.209)
     Venus = Planet(0.616,0.723,0.949/11.209)
     Earth = Planet(1,1,1/11.209)
     Mars = Planet(1.88,1.524,0.532/11.209)
     Jupiter = Planet(12,5,1) 
     Saturn = Planet(29,10,9.449/11.209)
+
+    """
+    Define your stellar system with stellar properties and a list of Planet objects.
+    """
     SolarSystem = System(star_dict={'M': 1, 'Teff': 5700},\
                         planet_dict={'Mercury': Mercury, \
                                     'Venus': Venus, \
@@ -19,6 +26,9 @@ if __name__ == "__main__":
                                     'Jupiter': Jupiter, \
                                     'Saturn': Saturn})
 
+    """
+    Repeat with the Trappist1 system.
+    """
     Trappist_b = Planet(1.511,0.0115,1.116)
     Trappist_c = Planet(2.422,0.0158,1.097)
     Trappist_d = Planet(4.049,0.0223,0.788)
@@ -36,6 +46,9 @@ if __name__ == "__main__":
                                     'g': Trappist_g,
                                     'h': Trappist_h,})
 
+    """
+    Create animation.
+    """
     animate_orbit(SolarSystem, 1000)
 
     animate_orbit(Trappist1, 1000)

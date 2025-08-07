@@ -2,6 +2,9 @@ import OrbitVisualization.OrbitVisualization as ov
 import os
 
 def test_animate_orbit():
+    """
+    Tests animate orbit, working if a gif with five frames is created.
+    """
 
     planet = ov.Planet(1,1,1)
 

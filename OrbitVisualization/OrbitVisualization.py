@@ -94,7 +94,14 @@ class System(Planet):
         plt.show()
 
 
-def animate_orbit(system, num_steps):
+def animate_orbit(system, num_steps, dt=0.1, save_anim=False, show_anim=True):
+    """
+    Animates the orbits of the planets in the system.
+
+    Args:
+        system (System): The planetary system to animate.
+        num_steps (int): Number of time steps to animate.
+    """
 
     fig, ax = plt.subplots()
     ax.set_aspect('equal', 'box')
@@ -117,7 +124,7 @@ def animate_orbit(system, num_steps):
     ax.set_ylim(-1.2*semimajor_axis,1.2*semimajor_axis)
 
     def update(frame):
-        system.run_timestep()
+        system.run_timestep(dt=dt)
         planet_names = list(system.planets.keys())
         for n in range(len(marker_plots)):
             b = marker_plots[n]
@@ -128,4 +135,9 @@ def animate_orbit(system, num_steps):
     ax.legend()
     ani = anim.FuncAnimation(fig, update, frames=num_steps, blit=True, interval=100, repeat=True)
 
-    plt.show()
+    if save_anim:
+        writervideo = anim.FFMpegWriter(fps=30)
+        ani.save('orbit.gif', writer=writervideo)
+
+    if show_anim:
+        plt.show()

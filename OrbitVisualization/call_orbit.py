@@ -35,4 +35,4 @@ if __name__ == "__main__":
 
     # animate_orbit(SolarSystem, 1000)
 
-    animate_orbit(Trappist1, 1000)
+    animate_orbit(Trappist1, 100, save_anim=True)

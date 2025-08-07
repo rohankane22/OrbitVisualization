@@ -7,7 +7,7 @@ py-modules = ["OrbitVisualization"]
 
 [project]
 name = "OrbitVisualization"
-version = "0.0.2"
+version = "1.0.0"
 
 dependencies = [
  "numpy",

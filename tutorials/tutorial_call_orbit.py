@@ -1,4 +1,8 @@
-from OrbitVisualization import Planet, System, animate_orbit
+"""
+Tutorial Script to Plot the Orbits of the Solar System and the TRAPPIST-1 system
+"""
+
+from OrbitVisualization.OrbitVisualization import Planet, System, animate_orbit
 
 if __name__ == "__main__":
     Mercury = Planet(0.24,0.387,0.383/11.209)
@@ -23,7 +27,6 @@ if __name__ == "__main__":
     Trappist_g = Planet(12.352,0.0468,1.129)
     Trappist_h = Planet(18.773,0.0619,0.755)
 
-
     Trappist1 = System(star_dict={'M': 0.09, 'Teff': 2566},
                     planet_dict={'b': Trappist_b,
                                     'c': Trappist_c,
@@ -33,6 +36,6 @@ if __name__ == "__main__":
                                     'g': Trappist_g,
                                     'h': Trappist_h,})
 
-    # animate_orbit(SolarSystem, 1000)
+    animate_orbit(SolarSystem, 1000)
 
-    animate_orbit(Trappist1, 100, save_anim=True)
+    animate_orbit(Trappist1, 1000)

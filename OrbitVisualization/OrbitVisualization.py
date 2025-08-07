@@ -94,24 +94,15 @@ class System(Planet):
         plt.show()
 
 
-<<<<<<< HEAD
-def animate_orbit(system, num_steps):
-    """
-    Plots the system at a given timestep, runs a timestep, plots the new configuration, repeats N=num_steps times and creates a gif.
-
-    Args:
-        system: System object to plot configurations of
-        numsteps (int): number of time steps to loop over
-        
-=======
 def animate_orbit(system, num_steps, dt=0.1, save_anim=False, show_anim=True, savefile=None):
     """
     Animates the orbits of the planets in the system.
 
+    Plots the system at a given timestep, runs a timestep, plots the new configuration, repeats N=num_steps times and creates a gif.
+
     Args:
         system (System): The planetary system to animate.
-        num_steps (int): Number of time stepss to animate.
->>>>>>> c46231a94fe62569db76b4dd21e8bfeb056f9487
+        num_steps (int): Number of time steps to loop over.
     """
 
     fig, ax = plt.subplots()

@@ -23,4 +23,5 @@ def test_run_timestep():
     assert planet.x == pytest.approx(exp_x, abs=0.01)
     assert planet.y == pytest.approx(exp_y, abs=0.01)
 
-test_run_timestep()
+if __name__ == "__main__":
+    test_run_timestep()

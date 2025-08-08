@@ -25,7 +25,7 @@ Define the system object, passing a dictionary for the star containing the mass 
 ```
 SolarSystem = System(star_dict={'M': 1, 'Teff': 5700}, planet_dict={'Jupiter': Jupiter, 'Saturn': Saturn})
 ```
-Finally, animate the orbit by passing in the System object and the number of frames you want in your animation.
+Finally, animate the orbit by passing in the System object and the number of frames you want in your animation. If you want to save the animation, also pass "save_anim=True" and input a file name "savefile=_".
 ```
 animate_orbit(SolarSystem, 1000)
 ```

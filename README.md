@@ -1,5 +1,4 @@
 # OrbitVisualization
-Code/Astro Project
 
 Animates planetary orbits around a star. Reads in stellar and planetary properties.
 
